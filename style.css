@@ -1,0 +1,388 @@
+/* RESET - remove margens e padroes do navegador */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Rolagem suave ao clicar nos links do menu */
+html { scroll-behavior: smooth; }
+
+/* FUNDO DA PAGINA (gradiente rosa/laranja fixo) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: radial-gradient(circle at top center, #fff4ef 0%, transparent 35%),
+                linear-gradient(135deg, #f7cdd7 0%, #f9d8cf 25%, #f6d8e8 50%, #f8c9da 75%, #f7e2a6 100%);
+    background-attachment: fixed;
+}
+
+/* CONTAINER - limita largura e centraliza conteudo */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* CABECALHO */
+header {
+    background: linear-gradient(135deg, #f5a623, #f8c471);
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* CABECALHO: logo e menu lado a lado */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* MENU DE NAVEGACAO */
+.header-container nav ul {
+    margin-right: 45px;
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.header-container nav ul li a {
+    color: #8E2B6D;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding-bottom: 5px;
+    transition: border-bottom 0.3s ease, color 0.3s;
+}
+
+.header-container nav ul li a:hover {
+    border-bottom: 2px solid #8E2B6D;
+    color: #5a1b46;
+}
+
+/* LOGO E TITULO DO SITE */
+.logo-area-link { text-decoration: none; display: block; }
+.logo-area { display: flex; align-items: center; gap: 15px; }
+.logo-wrapper { position: relative; display: inline-block; }
+.logo { max-width: 50px; height: auto; border-radius: 50%; object-fit: cover; }
+
+/* Texto "clique aqui" abaixo do logo */
+.clique-aqui {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    color: #8E2B6D;
+    text-decoration: underline;
+    white-space: nowrap;
+}
+
+/* TITULO DO SITE - cada elemento em uma linha */
+.site-title { font-size: 1.2rem; font-weight: bold; color: #8E2B6D; line-height: 1.2; }
+.igreja-nome { font-size: 1.2rem; display: block; }
+.igreja-local { font-size: 0.9rem; font-weight: normal; display: block; }
+.site-title small { font-size: 0.7rem; font-weight: normal; display: block; }
+
+/* FRASE BIBLICA */
+.frase-biblica { text-align: right; margin-top: 15px; padding-right: 35px; }
+.frase-biblica p { font-size: 1.2rem; font-style: italic; color: #8E2B6D; margin: 0; }
+
+/* BANNER PRINCIPAL (HERO) */
+.hero { background: linear-gradient(135deg, #f5a623, #f8c471); padding: 0.2rem 0; text-align: center; }
+.hero-logo { width: 100%; max-width: 100%; height: 500px; object-fit: cover; }
+
+/* DIVISORIAS DECORATIVAS */
+.divisoria-topo {
+    width: 100%; height: 80px;
+    background-image: url('imagens/imagemdivisao2.png');
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    background-position: center;
+    margin-bottom: -40px;
+    position: relative;
+    z-index: 2;
+}
+
+.divisoria {
+    width: 100%; height: 80px;
+    background-image: url('imagens/imagemdivisao.png');
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    background-position: center;
+    margin-top: -40px;
+    position: relative;
+    z-index: 2;
+}
+
+/* SECOES GERAIS */
+section { padding: 4rem 0; background-color: transparent; }
+h2 { text-align: center; color: #d35400; margin-bottom: 2rem; font-size: 2rem; text-shadow: 0px 0px 2px white; }
+section p { font-size: 1.2rem; line-height: 1.5; }
+
+/* PADDING BRANCO PARA QUEM SOMOS - texto principal */
+.quem-somos .container > p {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+}
+
+/* PADDING BRANCO PARA PROJETOS - texto antes dos cards */
+.bloco-texto-projetos {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.bloco-texto-projetos p {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
+}
+
+.bloco-texto-projetos .versiculo-projetos {
+    font-style: italic;
+    color: #d35400;
+    font-weight: bold;
+    margin: 1rem 0;
+    line-height: 1.4;
+}
+
+.bloco-texto-projetos p:last-child {
+    margin-bottom: 0;
+}
+
+/* PADDING BRANCO PARA COMO AJUDAR - BLOCO UNICO (igual ao Quem Somos) */
+.bloco-texto-ajuda {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.bloco-texto-ajuda p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+.bloco-texto-ajuda p:last-child {
+    margin-bottom: 0;
+}
+
+/* IMAGENS */
+.img-placeholder { background: transparent; display: flex; align-items: center; justify-content: center; border-radius: 8px; width: 100%; margin-top: 2rem; height: 200px; }
+.mapa-placeholder { background: rgba(224,224,224,0.8); display: flex; align-items: center; justify-content: center; border-radius: 8px; width: 100%; margin-top: 2rem; height: 300px; overflow: hidden; position: relative; }
+
+/* Estilo para o iframe do mapa */
+.mapa-placeholder iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.imagem-placeholder { display: flex; justify-content: center; margin-top: 2rem; width: 100%; background: none; }
+.imagem-placeholder img.foto-equipe { max-width: 530px; width: 100%; height: auto; object-fit: contain; border-radius: 8px; }
+.img-placeholder .card-img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto; border-radius: 8px; }
+
+/* CARDS DE PROJETOS E COMO AJUDAR */
+.projetos-grid, .ajuda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.projeto-card, .ajuda-item {
+    background: rgba(255,255,255,0.85);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.projeto-card:hover, .ajuda-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.95);
+}
+
+.projeto-card h3, .ajuda-item h3 { color: #d35400; margin: 1rem 0 0.5rem; }
+
+/* CONTATO */
+.contato-info {
+    text-align: center;
+    margin: 2rem 0;
+    background: rgba(255,255,255,0.85);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.contato-info a {
+    color: #d35400;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contato-info a:hover {
+    text-decoration: underline;
+}
+
+.contato-info p { margin: 0.5rem 0; }
+
+/* RODAPE */
+footer { background-color: #d35400; color: white; text-align: center; padding: 1.5rem 0; }
+
+/* MENU FLUTUANTE (sticky) */
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: linear-gradient(135deg, #f5a623, #f8c471);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 10px 0;
+    display: none;
+    justify-content: flex-end;
+}
+
+.sticky-nav nav {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.sticky-nav ul {
+    margin-right: 45px;
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.sticky-nav ul li a {
+    color: #8E2B6D;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding: 8px 0;
+}
+
+.sticky-nav ul li a:hover {
+    color: #5a1b46;
+    border-bottom: 2px solid #8E2B6D;
+}
+
+.sticky-nav.show { display: flex; }
+
+/* CARROSSEL DE PARCEIROS */
+.titulo-parceiros { margin-top: 4rem; }
+
+.parceiros-slider { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 2rem; }
+
+.seta { background: none; border: none; font-size: 2.5rem; color: #8E2B6D; opacity: 0.7; cursor: pointer; transition: opacity 0.3s; padding: 0; line-height: 1; }
+.seta:hover { opacity: 1; }
+
+.parceiros-viewport { width: 280px; overflow: hidden; }
+.parceiros-track { display: flex; align-items: center; gap: 20px; transition: transform 0.3s ease; }
+.parceiro-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: block; }
+.parceiros-track a { display: block; line-height: 0; }
+
+/* RESPONSIVIDADE (CELULAR) */
+@media (max-width: 768px) {
+    .header-container { flex-direction: column; text-align: center; }
+    .logo-area { justify-content: center; flex-wrap: wrap; }
+    .logo-wrapper { margin-bottom: 10px; }
+    .header-container nav ul { margin-right: 0; justify-content: center; gap: 1rem; }
+    .frase-biblica { text-align: center; padding-right: 0; margin-top: 20px; }
+    .hero { padding: 1rem 0; }
+    .hero-logo { height: 300px; }
+    section { padding: 2rem 0; }
+    .sticky-nav nav { justify-content: center; }
+    .sticky-nav ul { margin-right: 0; justify-content: center; }
+    .divisoria-topo { height: 60px; margin-bottom: -20px; }
+    .divisoria { height: 60px; margin-top: -20px; }
+    .img-placeholder { height: 180px; }
+    .parceiros-viewport { width: 120px; }
+    .parceiros-slider { gap: 5px; }
+    .seta { font-size: 2rem; }
+    .titulo-parceiros { margin-top: 3rem; }
+    
+    /* Ajuste de padding nos textos em dispositivos móveis */
+    .quem-somos .container > p,
+    .bloco-texto-projetos,
+    .bloco-texto-ajuda {
+        padding: 1.5rem;
+    }
+    
+    .bloco-texto-projetos p {
+        font-size: 1rem;
+    }
+}
+/* ... (código anterior) ... */
+
+/* === AVISO DE COOKIES LGPD === */
+.cookie-notice {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    max-width: 350px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    color: #f0f0f0;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    z-index: 9999;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: opacity 0.3s ease;
+}
+
+.cookie-notice-content {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.cookie-notice-content p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: #f0f0f0;
+}
+
+.cookie-notice-content a {
+    color: #f8c471;
+    text-decoration: underline;
+}
+
+.cookie-notice-content a:hover {
+    opacity: 0.8;
+}
+
+.cookie-accept-btn {
+    align-self: flex-end;
+    background: #f5a623;
+    color: #5a1b46;
+    border: none;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.cookie-accept-btn:hover {
+    background: #e69500;
+    transform: scale(1.02);
+}

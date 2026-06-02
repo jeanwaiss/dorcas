@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Colaborador - AD Canoas</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top center, #fff4ef 0%, transparent 35%),
+                        linear-gradient(135deg, #f7cdd7 0%, #f9d8cf 25%, #f6d8e8 50%, #f8c9da 75%, #f7e2a6 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .topo {
+            background: linear-gradient(135deg, #f5a623, #f8c471);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .menu {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .menu a {
+            color: #8E2B6D;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .menu a:hover {
+            background: rgba(255,255,255,0.6);
+            transform: translateY(-2px);
+        }
+
+        .card-login {
+            max-width: 450px;
+            margin: 80px auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .card-login h2 {
+            color: #d35400;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #d35400;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #f5a623, #f8c471);
+            color: #8E2B6D;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .mensagem {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .mensagem-erro {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .mensagem-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="topo">
+    <div class="container">
+        <div class="menu">
+            <a href="../index.html">🏠 Início</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card-login">
+        <h2>🔐 Área do Colaborador</h2>
+        
+        <div id="mensagem"></div>
+        
+        <div class="form-group">
+            <label>📧 Email</label>
+            <input type="email" id="email" placeholder="Seu email cadastrado" onkeypress="verificarEnter(event)">
+        </div>
+        <div class="form-group">
+            <label>🔒 Senha</label>
+            <input type="password" id="senha" placeholder="Sua senha" onkeypress="verificarEnter(event)">
+        </div>
+        <button class="btn" onclick="fazerLogin()">Entrar</button>
+        
+        <div style="text-align: center; margin-top: 1rem;">
+            <a href="#" onclick="mostrarSolicitar()" style="color: #d35400;">Solicitar Acesso</a>
+        </div>
+        
+        <div id="solicitarArea" style="display: none; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd;">
+            <h3 style="color: #8E2B6D; margin-bottom: 1rem;">📝 Solicitar Acesso</h3>
+            <div class="form-group">
+                <label>👤 Nome Completo</label>
+                <input type="text" id="solicitarNome" placeholder="Seu nome">
+            </div>
+            <div class="form-group">
+                <label>📧 Email</label>
+                <input type="email" id="solicitarEmail" placeholder="Seu email">
+            </div>
+            <div class="form-group">
+                <label>🔒 Senha desejada</label>
+                <input type="password" id="solicitarSenha" placeholder="Crie uma senha">
+            </div>
+            <button class="btn" onclick="solicitarAcesso()">Enviar Solicitação</button>
+            <button class="btn" onclick="esconderSolicitar()" style="background: #ccc; margin-top: 0.5rem;">Voltar</button>
+        </div>
+    </div>
+</div>
+
+<script>
+const API_URL = 'https://script.google.com/macros/s/AKfycbyj8auTTbZw93mcO5HCew90NW3C9T8XzgtozcETnxBeyyAvEo2BckScvObBUsIdPtdd/exec';
+function verificarEnter(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault();
+        fazerLogin();
+    }
+}
+
+function mostrarMensagem(texto, tipo) {
+    const div = document.getElementById('mensagem');
+    div.innerHTML = `<div class="mensagem mensagem-${tipo}">${texto}</div>`;
+    setTimeout(() => div.innerHTML = '', 5000);
+}
+
+function mostrarSolicitar() {
+    document.getElementById('solicitarArea').style.display = 'block';
+}
+
+function esconderSolicitar() {
+    document.getElementById('solicitarArea').style.display = 'none';
+    document.getElementById('solicitarNome').value = '';
+    document.getElementById('solicitarEmail').value = '';
+    document.getElementById('solicitarSenha').value = '';
+}
+
+async function fazerLogin() {
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('senha').value;
+    
+    if (!email || !senha) {
+        mostrarMensagem('Preencha email e senha!', 'erro');
+        return;
+    }
+    
+    const url = `${API_URL}?acao=login&email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`;
+    
+    try {
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
+        
+        if (dados.sucesso) {
+            localStorage.setItem('colaborador_email', email);
+            localStorage.setItem('colaborador_nome', dados.nome);
+            window.location.href = 'estoque.html';
+        } else {
+            mostrarMensagem(dados.erro || 'Erro ao fazer login', 'erro');
+        }
+    } catch (erro) {
+        mostrarMensagem('Erro de conexão: ' + erro.message, 'erro');
+    }
+}
+
+async function solicitarAcesso() {
+    const nome = document.getElementById('solicitarNome').value;
+    const email = document.getElementById('solicitarEmail').value;
+    const senha = document.getElementById('solicitarSenha').value;
+    
+    if (!nome || !email || !senha) {
+        mostrarMensagem('Preencha todos os campos!', 'erro');
+        return;
+    }
+    
+    const url = `${API_URL}?acao=solicitar&nome=${encodeURIComponent(nome)}&email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`;
+    
+    try {
+        const resposta = await fetch(url);
+        const dados = await resposta.json();
+        
+        if (dados.sucesso) {
+            mostrarMensagem('Solicitação enviada ao moderador!', 'info');
+            esconderSolicitar();
+        } else {
+            mostrarMensagem(dados.erro || 'Erro ao solicitar', 'erro');
+        }
+    } catch (erro) {
+        mostrarMensagem('Erro de conexão: ' + erro.message, 'erro');
+    }
+}
+</script>
+
+</body>
+</html>
