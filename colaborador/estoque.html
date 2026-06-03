@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Sistema de Estoque - AD Canoas</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -17,6 +13,8 @@
                         linear-gradient(135deg, #f7cdd7 0%, #f9d8cf 25%, #f6d8e8 50%, #f8c9da 75%, #f7e2a6 100%);
             background-attachment: fixed;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .topo {
@@ -170,10 +168,6 @@
             font-weight: bold;
         }
 
-        .item-linha button:hover {
-            background: #218838;
-        }
-
         .lista-itens-adicionados {
             margin: 20px 0;
             max-height: 200px;
@@ -219,7 +213,6 @@
             transform: translateY(-2px);
         }
 
-        /* Container para tabela com scroll horizontal */
         .tabela-container {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -232,8 +225,7 @@
             border-collapse: collapse;
         }
 
-        .tabela-estoque th,
-        .tabela-estoque td {
+        .tabela-estoque th, .tabela-estoque td {
             padding: 12px;
             text-align: left;
             border-bottom: 1px solid #ddd;
@@ -245,67 +237,61 @@
             font-weight: bold;
         }
 
-        .tabela-estoque tr:hover {
-            background: rgba(245, 166, 35, 0.1);
+        .quantidade-zero { color: #999; }
+
+        /* RODAPÉ */
+        footer {
+            background-color: #d35400;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
         }
 
-        .quantidade-zero {
-            color: #999;
+        footer a {
+            color: white;
+            text-decoration: underline;
         }
 
-        /* Responsivo para celular */
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        /* Linha da licença com política de privacidade à direita (mesma linha, licença centralizada) */
+        .footer-licenca {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 5px;
+            font-size: 0.7rem;
+            position: relative;
+        }
+
+        .footer-licenca a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsivo */
         @media (max-width: 900px) {
-            .grid-estoque {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .card {
-                padding: 1rem;
-            }
-            
-            .card h3 {
-                font-size: 1.1rem;
-            }
-            
-            .item-linha {
-                flex-direction: column;
-            }
-            
-            .item-linha select,
-            .item-linha input {
-                width: 100%;
-            }
-            
-            .titulo-colaborador {
-                font-size: 1.2rem;
-                padding: 15px 0;
-            }
-            
-            .menu-topo {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .menu-links {
-                justify-content: center;
-            }
+            .grid-estoque { grid-template-columns: 1fr; gap: 20px; }
+            .card { padding: 1rem; }
+            .card h3 { font-size: 1.1rem; }
+            .item-linha { flex-direction: column; }
+            .item-linha select, .item-linha input { width: 100%; }
+            .titulo-colaborador { font-size: 1.2rem; padding: 15px 0; }
+            .menu-topo { flex-direction: column; text-align: center; }
+            .menu-links { justify-content: center; }
         }
-        
+
         @media (max-width: 480px) {
-            .tabela-estoque th,
-            .tabela-estoque td {
-                padding: 8px;
-                font-size: 0.8rem;
-            }
-            
-            .card h3 {
-                font-size: 1rem;
-            }
-            
-            .btn-enviar {
-                padding: 10px;
-                font-size: 0.9rem;
+            .tabela-estoque th, .tabela-estoque td { padding: 8px; font-size: 0.8rem; }
+            .btn-enviar { padding: 10px; font-size: 0.9rem; }
+            .footer-licenca {
+                flex-direction: column;
+                gap: 5px;
             }
         }
     </style>
@@ -336,15 +322,12 @@
     </div>
 
     <div class="grid-estoque">
-        <!-- COLUNA ESQUERDA: Registrar Movimentação -->
         <div class="card">
             <h3>📅 Registrar Movimentação</h3>
-            
             <div class="data-input">
                 <label>📆 Data da Movimentação</label>
                 <input type="date" id="dataMovimentacao" value="">
             </div>
-            
             <div class="item-linha">
                 <select id="itemSelect" onchange="toggleOutroItem()">
                     <option value="">Selecione um item...</option>
@@ -368,32 +351,30 @@
                 </select>
                 <button onclick="adicionarItemLista()">+</button>
             </div>
-            
-            <!-- Campo para digitar outro item -->
             <div id="outroItemDiv" style="display: none; margin-bottom: 1rem;">
                 <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: #333;">📝 Digite o nome do item:</label>
-                <input type="text" id="outroItemInput" placeholder="Ex: Biscoito, Suco, Sabonete..." style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px;">
+                <input type="text" id="outroItemInput" placeholder="Ex: Biscoito, Suco, Sabonete...">
             </div>
-            
             <div class="lista-itens-adicionados" id="listaItensTemp">
                 <p style="color: #888; text-align: center;">Nenhum item adicionado</p>
             </div>
-            
-            <button class="btn-enviar" onclick="enviarMovimentacao()">
-                📤 ENVIAR PARA PLANILHA
-            </button>
+            <button class="btn-enviar" onclick="enviarMovimentacao()">📤 ENVIAR PARA PLANILHA</button>
         </div>
 
-        <!-- COLUNA DIREITA: Estoque Atual -->
         <div class="card">
             <h3>📦 ITENS EM ESTOQUE</h3>
             <div class="tabela-container">
                 <table class="tabela-estoque" id="tabelaEstoque">
                     <thead>
-                        <tr><th>Item</th><th>Quantidade</th></tr>
+                        <tr>
+                            <th>Item</th>
+                            <th>Quantidade</th>
+                        </tr>
                     </thead>
                     <tbody id="estoqueBody">
-                        <tr><td colspan="2">Carregando...</td></tr>
+                        <tr>
+                            <td colspan="2">Carregando...‹/td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -401,47 +382,48 @@
     </div>
 </div>
 
+<!-- ========================================= -->
+<!-- RODAPÉ: licença centralizada + política de privacidade à direita na mesma linha -->
+<!-- ========================================= -->
+<footer>
+    <div class="container">
+        <p>© 2026 AD Canoas - Matriz Niterói | Amor que transforma ✝️</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">
+            Desenvolvido por Jean Waiss.
+        </p>
+        <p style="font-size: 0.7rem; margin-top: 5px;">
+            Confira no 
+            <a href="https://github.com/jeanwaiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">GitHub</a> 
+            e 
+            <a href="https://www.linkedin.com/in/jean-waiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Linkedin</a>.
+        </p>
+        <div class="footer-licenca">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="license noopener noreferrer">
+                Licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)
+            </a>
+            <a href="../privacidade.html" target="_blank">🔒 Política de Privacidade</a>
+        </div>
+    </div>
+</footer>
+
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbyj8auTTbZw93mcO5HCew90NW3C9T8XzgtozcETnxBeyyAvEo2BckScvObBUsIdPtdd/exec';
-let colaboradorEmail = '';
-let colaboradorNome = '';
-let itensTemp = [];
+let colaboradorEmail = '', colaboradorNome = '', itensTemp = [];
 
 document.addEventListener('DOMContentLoaded', function() {
     colaboradorEmail = localStorage.getItem('colaborador_email');
     colaboradorNome = localStorage.getItem('colaborador_nome');
-    
-    if (!colaboradorEmail) {
-        window.location.href = 'login.html';
-        return;
-    }
-    
-    const nomeSpan = document.getElementById('nomeColaborador');
-    if (nomeSpan && colaboradorNome) {
-        nomeSpan.innerText = colaboradorNome;
-    } else if (nomeSpan) {
-        nomeSpan.innerText = colaboradorEmail;
-    }
-    
-    const hoje = new Date().toISOString().split('T')[0];
-    document.getElementById('dataMovimentacao').value = hoje;
-    
+    if (!colaboradorEmail) { window.location.href = 'login.html'; return; }
+    document.getElementById('nomeColaborador').innerText = colaboradorNome || colaboradorEmail;
+    document.getElementById('dataMovimentacao').value = new Date().toISOString().split('T')[0];
     carregarEstoque();
 });
 
 function toggleOutroItem() {
     const select = document.getElementById('itemSelect');
     const outroDiv = document.getElementById('outroItemDiv');
-    const outroInput = document.getElementById('outroItemInput');
-    
-    if (select.value === 'outro') {
-        outroDiv.style.display = 'block';
-        outroInput.required = true;
-    } else {
-        outroDiv.style.display = 'none';
-        outroInput.required = false;
-        outroInput.value = '';
-    }
+    if (select.value === 'outro') { outroDiv.style.display = 'block'; }
+    else { outroDiv.style.display = 'none'; document.getElementById('outroItemInput').value = ''; }
 }
 
 function adicionarItemLista() {
@@ -449,28 +431,14 @@ function adicionarItemLista() {
     const quantidade = parseFloat(document.getElementById('quantidadeItem').value);
     const tipo = document.getElementById('tipoMovimentacao').value;
     const outroInput = document.getElementById('outroItemInput');
-    
     if (item === 'outro') {
-        if (!outroInput.value.trim()) {
-            alert('Digite o nome do item!');
-            return;
-        }
+        if (!outroInput.value.trim()) { alert('Digite o nome do item!'); return; }
         item = outroInput.value.trim();
     }
-    
-    if (!item) {
-        alert('Selecione ou digite um item!');
-        return;
-    }
-    
-    if (!quantidade || quantidade <= 0) {
-        alert('Informe uma quantidade válida!');
-        return;
-    }
-    
+    if (!item) { alert('Selecione ou digite um item!'); return; }
+    if (!quantidade || quantidade <= 0) { alert('Informe uma quantidade válida!'); return; }
     itensTemp.push({ item, quantidade, tipo });
     atualizarListaTemp();
-    
     document.getElementById('quantidadeItem').value = '';
     document.getElementById('itemSelect').value = '';
     document.getElementById('outroItemDiv').style.display = 'none';
@@ -479,66 +447,30 @@ function adicionarItemLista() {
 
 function atualizarListaTemp() {
     const container = document.getElementById('listaItensTemp');
-    
-    if (itensTemp.length === 0) {
-        container.innerHTML = '<p style="color: #888; text-align: center;">Nenhum item adicionado</p>';
-        return;
-    }
-    
+    if (itensTemp.length === 0) { container.innerHTML = '<p style="color: #888; text-align: center;">Nenhum item adicionado</p>'; return; }
     container.innerHTML = '';
     itensTemp.forEach((item, index) => {
         const div = document.createElement('div');
         div.className = 'item-adicionado';
-        const tipoIcone = item.tipo === 'entrada' ? '➕' : '➖';
-        div.innerHTML = `
-            <span><strong>${item.item}</strong> ${tipoIcone} ${item.quantidade}</span>
-            <button class="btn-remover" onclick="removerItemTemp(${index})">Remover</button>
-        `;
+        div.innerHTML = `<span><strong>${item.item}</strong> ${item.tipo === 'entrada' ? '➕' : '➖'} ${item.quantidade}</span>
+                        <button class="btn-remover" onclick="removerItemTemp(${index})">Remover</button>`;
         container.appendChild(div);
     });
 }
 
-function removerItemTemp(index) {
-    itensTemp.splice(index, 1);
-    atualizarListaTemp();
-}
+function removerItemTemp(index) { itensTemp.splice(index, 1); atualizarListaTemp(); }
 
 async function enviarMovimentacao() {
     const data = document.getElementById('dataMovimentacao').value;
-    
-    if (!data) {
-        alert('Selecione uma data!');
-        return;
-    }
-    
-    if (itensTemp.length === 0) {
-        alert('Adicione pelo menos um item!');
-        return;
-    }
-    
-    const movimentacao = {
-        data: data,
-        colaborador: colaboradorEmail,
-        itens: itensTemp
-    };
-    
-    const url = `${API_URL}?acao=movimentacao&dados=${encodeURIComponent(JSON.stringify(movimentacao))}`;
-    
+    if (!data) { alert('Selecione uma data!'); return; }
+    if (itensTemp.length === 0) { alert('Adicione pelo menos um item!'); return; }
+    const url = `${API_URL}?acao=movimentacao&dados=${encodeURIComponent(JSON.stringify({ data, colaborador: colaboradorEmail, itens: itensTemp }))}`;
     try {
         const resposta = await fetch(url);
         const dados = await resposta.json();
-        
-        if (dados.sucesso) {
-            alert('✅ Movimentação registrada com sucesso!');
-            itensTemp = [];
-            atualizarListaTemp();
-            carregarEstoque();
-        } else {
-            alert('Erro: ' + (dados.erro || dados.mensagem || 'Erro desconhecido'));
-        }
-    } catch (erro) {
-        alert('Erro de conexão: ' + erro.message);
-    }
+        if (dados.sucesso) { alert('✅ Movimentação registrada!'); itensTemp = []; atualizarListaTemp(); carregarEstoque(); }
+        else { alert('Erro: ' + (dados.erro || 'Erro desconhecido')); }
+    } catch (erro) { alert('Erro de conexão: ' + erro.message); }
 }
 
 async function carregarEstoque() {
@@ -546,9 +478,7 @@ async function carregarEstoque() {
         const url = `${API_URL}?acao=estoque`;
         const resposta = await fetch(url);
         const dados = await resposta.json();
-        
         const tbody = document.getElementById('estoqueBody');
-        
         if (dados.estoque && Object.keys(dados.estoque).length > 0) {
             tbody.innerHTML = '';
             for (const [item, quantidade] of Object.entries(dados.estoque)) {
@@ -556,27 +486,14 @@ async function carregarEstoque() {
                 row.insertCell(0).innerHTML = `<strong>${item}</strong>`;
                 const qtdCell = row.insertCell(1);
                 qtdCell.innerHTML = quantidade > 0 ? `${quantidade}` : `<span class="quantidade-zero">${quantidade}</span>`;
-                if (quantidade <= 0) {
-                    qtdCell.style.color = '#999';
-                } else {
-                    qtdCell.style.fontWeight = 'bold';
-                    qtdCell.style.color = '#28a745';
-                }
+                qtdCell.style.color = quantidade > 0 ? '#28a745' : '#999';
+                if (quantidade > 0) qtdCell.style.fontWeight = 'bold';
             }
-        } else {
-            tbody.innerHTML = '<tr><td colspan="2">Nenhum item em estoque</td></tr>';
-        }
-    } catch (erro) {
-        const tbody = document.getElementById('estoqueBody');
-        tbody.innerHTML = '<tr><td colspan="2">Erro ao carregar: ' + erro.message + '</td></tr>';
-    }
+        } else { tbody.innerHTML = '<tr><td colspan="2">Nenhum item em estoque</td></tr>'; }
+    } catch (erro) { document.getElementById('estoqueBody').innerHTML = `<tr><td colspan="2">Erro ao carregar: ${erro.message}</td></tr>`; }
 }
 
-function logout() {
-    localStorage.removeItem('colaborador_email');
-    localStorage.removeItem('colaborador_nome');
-    window.location.href = 'login.html';
-}
+function logout() { localStorage.removeItem('colaborador_email'); localStorage.removeItem('colaborador_nome'); window.location.href = 'login.html'; }
 </script>
 
 </body>

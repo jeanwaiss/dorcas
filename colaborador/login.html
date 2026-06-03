@@ -13,6 +13,8 @@
                         linear-gradient(135deg, #f7cdd7 0%, #f9d8cf 25%, #f6d8e8 50%, #f8c9da 75%, #f7e2a6 100%);
             background-attachment: fixed;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .topo {
@@ -74,38 +76,77 @@
             font-weight: 600;
         }
 
-        /* Container para senha com olhinho */
-        .senha-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .senha-container input {
-            flex: 1;
+        /* Campo email - estilo original */
+        .form-group input[type="email"],
+        .form-group input[type="text"],
+        .form-group input[type="password"] {
+            width: 100%;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
         }
 
-        .senha-container input:focus {
+        .form-group input:focus {
             outline: none;
             border-color: #d35400;
         }
 
+        /* Wrapper específico para o campo senha (mantém o mesmo visual) */
+        .senha-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .senha-wrapper input {
+            width: 100%;
+            padding: 12px;
+            padding-right: 50px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .senha-wrapper input:focus {
+            outline: none;
+            border-color: #d35400;
+        }
+
+        /* Botão do cadeado dentro do campo senha */
         .toggle-senha {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
             background: none;
             border: none;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.3s;
+            padding: 0;
+            margin: 0;
+            opacity: 0.7;
+            transition: opacity 0.3s;
         }
 
         .toggle-senha:hover {
-            background: rgba(0,0,0,0.05);
+            opacity: 1;
+        }
+
+        /* Remove o olhinho padrão do navegador */
+        input[type="password"]::-ms-reveal,
+        input[type="password"]::-webkit-credentials-auto-fill-button,
+        input[type="password"]::-webkit-textfield-decoration-container,
+        input[type="password"]::-webkit-inner-spin-button,
+        input[type="password"]::-webkit-outer-spin-button {
+            display: none !important;
+            visibility: hidden !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+
+        input[type="password"]::-ms-clear,
+        input[type="password"]::-ms-reveal {
+            display: none !important;
         }
 
         .btn {
@@ -144,24 +185,50 @@
             border: 1px solid #bee5eb;
         }
 
+        /* RODAPÉ */
+        footer {
+            background-color: #d35400;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
         /* Responsivo para celular */
         @media (max-width: 768px) {
             .card-login {
                 margin: 40px 16px;
                 padding: 1.5rem;
             }
-            
             .card-login h2 {
                 font-size: 1.5rem;
             }
-            
             .menu a {
                 font-size: 0.9rem;
                 padding: 6px 12px;
             }
-            
+            .senha-wrapper input {
+                padding: 10px;
+                padding-right: 45px;
+                font-size: 0.95rem;
+            }
             .toggle-senha {
-                font-size: 1.2rem;
+                font-size: 1rem;
+                right: 10px;
+            }
+            footer div[style*="display: flex"] {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
             }
         }
     </style>
@@ -182,17 +249,21 @@
         
         <div id="mensagem"></div>
         
+        <!-- Campo Email (estilo original) -->
         <div class="form-group">
             <label>📧 Email</label>
             <input type="email" id="email" placeholder="Seu email cadastrado" onkeypress="verificarEnter(event)">
         </div>
+        
+        <!-- Campo Senha com cadeado dentro (estilo original preservado) -->
         <div class="form-group">
             <label>🔒 Senha</label>
-            <div class="senha-container">
+            <div class="senha-wrapper">
                 <input type="password" id="senha" placeholder="Sua senha" onkeypress="verificarEnter(event)">
-                <button type="button" class="toggle-senha" onclick="toggleSenha()" id="olhoBtn">👁️</button>
+                <button type="button" class="toggle-senha" id="olhoBtn" onclick="toggleSenha()">🔒❔</button>
             </div>
         </div>
+        
         <button class="btn" onclick="fazerLogin()">Entrar</button>
         
         <div style="text-align: center; margin-top: 1rem;">
@@ -219,18 +290,45 @@
     </div>
 </div>
 
+<!-- ========================================= -->
+<!-- RODAPÉ: licença centralizada + política de privacidade à direita na mesma linha -->
+<!-- ========================================= -->
+<footer>
+    <div class="container">
+        <p>© 2026 AD Canoas - Matriz Niterói | Amor que transforma ✝️</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">
+            Desenvolvido por Jean Waiss.
+        </p>
+        <p style="font-size: 0.7rem; margin-top: 5px;">
+            Confira no 
+            <a href="https://github.com/jeanwaiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">GitHub</a> 
+            e 
+            <a href="https://www.linkedin.com/in/jean-waiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Linkedin</a>.
+        </p>
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 5px; font-size: 0.7rem;">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="license noopener noreferrer" style="color: white; text-decoration: underline;">
+                Licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)
+            </a>
+            <a href="../privacidade.html" target="_blank" style="color: white; text-decoration: underline;">
+                🔒 Política de Privacidade
+            </a>
+        </div>
+    </div>
+</footer>
+
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbyj8auTTbZw93mcO5HCew90NW3C9T8XzgtozcETnxBeyyAvEo2BckScvObBUsIdPtdd/exec';
 
 function toggleSenha() {
     const senhaInput = document.getElementById('senha');
     const olhoBtn = document.getElementById('olhoBtn');
+    
     if (senhaInput.type === 'password') {
         senhaInput.type = 'text';
-        olhoBtn.textContent = '🙈';
+        olhoBtn.innerHTML = '🔓❕';
     } else {
         senhaInput.type = 'password';
-        olhoBtn.textContent = '👁️';
+        olhoBtn.innerHTML = '🔒❔';
     }
 }
 

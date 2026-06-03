@@ -1,10 +1,10 @@
-/* RESET - remove margens e padrões do navegador */
+/* RESET - remove margens e padroes do navegador */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* Rolagem suave ao clicar nos links do menu */
 html { scroll-behavior: smooth; }
 
-/* FUNDO DA PÁGINA (gradiente rosa/laranja fixo) */
+/* FUNDO DA PAGINA (gradiente rosa/laranja fixo) */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
@@ -14,10 +14,10 @@ body {
     background-attachment: fixed;
 }
 
-/* CONTAINER - limita largura e centraliza conteúdo */
+/* CONTAINER - limita largura e centraliza conteudo */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-/* CABEÇALHO - fundo laranja gradiente */
+/* CABECALHO */
 header {
     background: linear-gradient(135deg, #f5a623, #f8c471);
     padding: 1rem 0;
@@ -25,7 +25,7 @@ header {
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* CABEÇALHO: logo e menu lado a lado */
+/* CABECALHO: logo e menu lado a lado */
 .header-container {
     display: flex;
     justify-content: space-between;
@@ -34,7 +34,7 @@ header {
     gap: 20px;
 }
 
-/* MENU DE NAVEGAÇÃO - links principais */
+/* MENU DE NAVEGACAO */
 .header-container nav ul {
     margin-right: 45px;
     list-style: none;
@@ -42,7 +42,6 @@ header {
     gap: 1.5rem;
 }
 
-/* Estilo dos links do menu */
 .header-container nav ul li a {
     color: #8E2B6D;
     text-decoration: none;
@@ -52,22 +51,15 @@ header {
     transition: border-bottom 0.3s ease, color 0.3s;
 }
 
-/* Efeito hover nos links do menu */
 .header-container nav ul li a:hover {
     border-bottom: 2px solid #8E2B6D;
     color: #5a1b46;
 }
 
-/* ÁREA DA LOGO E TÍTULO (link para Facebook) */
+/* LOGO E TITULO DO SITE */
 .logo-area-link { text-decoration: none; display: block; }
-
-/* Container flexível para logo e título */
 .logo-area { display: flex; align-items: center; gap: 15px; }
-
-/* Wrapper para imagem com texto "clique aqui" abaixo */
 .logo-wrapper { position: relative; display: inline-block; }
-
-/* Logo redonda do cabeçalho */
 .logo { max-width: 50px; height: auto; border-radius: 50%; object-fit: cover; }
 
 /* Texto "clique aqui" abaixo do logo */
@@ -82,21 +74,21 @@ header {
     white-space: nowrap;
 }
 
-/* TÍTULO DO SITE - cada elemento em uma linha */
+/* TITULO DO SITE - cada elemento em uma linha */
 .site-title { font-size: 1.2rem; font-weight: bold; color: #8E2B6D; line-height: 1.2; }
 .igreja-nome { font-size: 1.2rem; display: block; }
 .igreja-local { font-size: 0.9rem; font-weight: normal; display: block; }
 .site-title small { font-size: 0.7rem; font-weight: normal; display: block; }
 
-/* FRASE BÍBLICA no cabeçalho */
+/* FRASE BIBLICA */
 .frase-biblica { text-align: right; margin-top: 15px; padding-right: 35px; }
 .frase-biblica p { font-size: 1.2rem; font-style: italic; color: #8E2B6D; margin: 0; }
 
-/* BANNER PRINCIPAL (HERO) - área da logo grande */
+/* BANNER PRINCIPAL (HERO) */
 .hero { background: linear-gradient(135deg, #f5a623, #f8c471); padding: 0.2rem 0; text-align: center; }
 .hero-logo { width: 100%; max-width: 100%; height: 500px; object-fit: cover; }
 
-/* DIVISÓRIA SUPERIOR (sobre a borda superior do banner) */
+/* DIVISORIAS DECORATIVAS */
 .divisoria-topo {
     width: 100%; height: 80px;
     background-image: url('imagens/imagemdivisao2.png');
@@ -108,7 +100,6 @@ header {
     z-index: 2;
 }
 
-/* DIVISÓRIA INFERIOR (sobre a borda inferior do banner) */
 .divisoria {
     width: 100%; height: 80px;
     background-image: url('imagens/imagemdivisao.png');
@@ -120,13 +111,9 @@ header {
     z-index: 2;
 }
 
-/* SEÇÕES GERAIS - espaçamento vertical */
+/* SECOES GERAIS */
 section { padding: 4rem 0; background-color: transparent; }
-
-/* TÍTULOS DAS SEÇÕES (h2) */
 h2 { text-align: center; color: #d35400; margin-bottom: 2rem; font-size: 2rem; text-shadow: 0px 0px 2px white; }
-
-/* PARÁGRAFOS DAS SEÇÕES */
 section p { font-size: 1.2rem; line-height: 1.5; }
 
 /* PADDING BRANCO PARA QUEM SOMOS - texto principal */
@@ -148,10 +135,8 @@ section p { font-size: 1.2rem; line-height: 1.5; }
     text-align: center;
 }
 
-/* Parágrafos dentro do bloco de projetos */
 .bloco-texto-projetos p { font-size: 1.2rem; margin-bottom: 0.8rem; line-height: 1.4; }
 
-/* Versículo em destaque nos projetos */
 .bloco-texto-projetos .versiculo-projetos {
     font-style: italic;
     color: #d35400;
@@ -160,10 +145,9 @@ section p { font-size: 1.2rem; line-height: 1.5; }
     line-height: 1.4;
 }
 
-/* Último parágrafo sem margem inferior */
 .bloco-texto-projetos p:last-child { margin-bottom: 0; }
 
-/* PADDING BRANCO PARA COMO AJUDAR - bloco único */
+/* PADDING BRANCO PARA COMO AJUDAR - BLOCO UNICO (igual ao Quem Somos) */
 .bloco-texto-ajuda {
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
@@ -172,25 +156,18 @@ section p { font-size: 1.2rem; line-height: 1.5; }
     margin-bottom: 2rem;
 }
 
-/* Parágrafos dentro do bloco de ajuda */
 .bloco-texto-ajuda p { line-height: 1.8; margin-bottom: 1rem; }
 .bloco-texto-ajuda p:last-child { margin-bottom: 0; }
 
-/* PLACEHOLDERS E IMAGENS DAS SEÇÕES */
+/* IMAGENS */
 .img-placeholder { background: transparent; display: flex; align-items: center; justify-content: center; border-radius: 8px; width: 100%; margin-top: 2rem; height: 200px; }
-
-/* MAPA (Google Maps) */
 .mapa-placeholder { background: rgba(224,224,224,0.8); display: flex; align-items: center; justify-content: center; border-radius: 8px; width: 100%; margin-top: 2rem; height: 300px; overflow: hidden; position: relative; }
 .mapa-placeholder iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-
-/* Foto da equipe na seção Quem Somos */
 .imagem-placeholder { display: flex; justify-content: center; margin-top: 2rem; width: 100%; background: none; }
 .imagem-placeholder img.foto-equipe { max-width: 530px; width: 100%; height: auto; object-fit: contain; border-radius: 8px; }
-
-/* Imagens dentro dos cards */
 .img-placeholder .card-img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; margin: 0 auto; border-radius: 8px; }
 
-/* GRIDS DE PROJETOS E COMO AJUDAR */
+/* CARDS DE PROJETOS E COMO AJUDAR */
 .projetos-grid, .ajuda-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -198,7 +175,6 @@ section p { font-size: 1.2rem; line-height: 1.5; }
     margin-top: 2rem;
 }
 
-/* CARDS DE PROJETOS E ITENS DE AJUDA */
 .projeto-card, .ajuda-item {
     background: rgba(255,255,255,0.85);
     border-radius: 8px;
@@ -208,13 +184,14 @@ section p { font-size: 1.2rem; line-height: 1.5; }
     transition: transform 0.3s;
 }
 
-/* Efeito hover nos cards */
-.projeto-card:hover, .ajuda-item:hover { transform: translateY(-5px); background: rgba(255,255,255,0.95); }
+.projeto-card:hover, .ajuda-item:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.95);
+}
 
-/* Títulos dos cards */
 .projeto-card h3, .ajuda-item h3 { color: #d35400; margin: 1rem 0 0.5rem; }
 
-/* CONTATO - bloco de informações */
+/* CONTATO */
 .contato-info {
     text-align: center;
     margin: 2rem 0;
@@ -224,15 +201,14 @@ section p { font-size: 1.2rem; line-height: 1.5; }
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
-/* Links dentro do contato */
 .contato-info a { color: #d35400; text-decoration: none; font-weight: bold; }
 .contato-info a:hover { text-decoration: underline; }
 .contato-info p { margin: 0.5rem 0; }
 
-/* RODAPÉ DO SITE */
+/* RODAPE */
 footer { background-color: #d35400; color: white; text-align: center; padding: 1.5rem 0; }
 
-/* MENU FLUTUANTE (STICKY) - clone que aparece ao rolar */
+/* MENU FLUTUANTE (sticky) */
 .sticky-nav {
     position: fixed;
     top: 0;
@@ -246,40 +222,23 @@ footer { background-color: #d35400; color: white; text-align: center; padding: 1
     justify-content: flex-end;
 }
 
-/* Container interno do menu flutuante */
 .sticky-nav nav { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: flex-end; }
-
-/* Lista do menu flutuante */
 .sticky-nav ul { margin-right: 45px; list-style: none; display: flex; gap: 1.5rem; }
-
-/* Links do menu flutuante */
 .sticky-nav ul li a { color: #8E2B6D; text-decoration: none; font-weight: 600; font-size: 1.3rem; padding: 8px 0; }
 .sticky-nav ul li a:hover { color: #5a1b46; border-bottom: 2px solid #8E2B6D; }
-
-/* Classe para exibir o menu flutuante */
 .sticky-nav.show { display: flex; }
 
-/* TÍTULO DA SEÇÃO PARCEIROS */
+/* CARROSSEL DE PARCEIROS */
 .titulo-parceiros { margin-top: 4rem; }
-
-/* CARROSSEL DE PARCEIROS - container principal */
 .parceiros-slider { display: flex; align-items: center; justify-content: center; gap: 15px; margin-top: 2rem; }
-
-/* Setas do carrossel */
 .seta { background: none; border: none; font-size: 2.5rem; color: #8E2B6D; opacity: 0.7; cursor: pointer; transition: opacity 0.3s; padding: 0; line-height: 1; }
 .seta:hover { opacity: 1; }
-
-/* Viewport do carrossel (área visível) */
 .parceiros-viewport { width: 280px; overflow: hidden; }
-
-/* Track do carrossel (itens que deslizam) */
 .parceiros-track { display: flex; align-items: center; gap: 20px; transition: transform 0.3s ease; }
-
-/* Imagens dos parceiros (redondas) */
 .parceiro-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: block; }
 .parceiros-track a { display: block; line-height: 0; }
 
-/* AVISO DE COOKIES LGPD - fixo no canto inferior direito */
+/* AVISO DE COOKIES LGPD */
 .cookie-notice {
     position: fixed;
     bottom: 20px;
@@ -297,13 +256,11 @@ footer { background-color: #d35400; color: white; text-align: center; padding: 1
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-/* Conteúdo interno do aviso de cookies */
 .cookie-notice-content { display: flex; flex-direction: column; gap: 12px; }
 .cookie-notice-content p { margin: 0; font-size: 0.85rem; color: #f0f0f0; }
 .cookie-notice-content a { color: #f8c471; text-decoration: underline; }
 .cookie-notice-content a:hover { opacity: 0.8; }
 
-/* Botão de aceitar cookies */
 .cookie-accept-btn {
     align-self: flex-end;
     background: #f5a623;
@@ -319,135 +276,56 @@ footer { background-color: #d35400; color: white; text-align: center; padding: 1
 .cookie-accept-btn:hover { background: #e69500; transform: scale(1.02); }
 
 /* ========================================= */
-/* RESPONSIVO PARA CELULARES (max-width: 768px) */
+/* RESPONSIVO PARA CELULAR (max-width: 768px) */
 /* ========================================= */
 @media (max-width: 768px) {
-    /* Cabeçalho - muda para coluna e centraliza tudo */
-    .header-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 15px;
-    }
-    
-    /* Logo e título - centralizados com wrap */
-    .logo-area {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    
+    .header-container { flex-direction: column; align-items: center; text-align: center; gap: 15px; }
+    .logo-area { justify-content: center; flex-wrap: wrap; gap: 10px; }
     .logo-wrapper { margin-bottom: 8px; }
-    
-    /* Menu - força quebra de linha e centralização */
     .header-container nav { width: 100%; }
-    .header-container nav ul {
-        margin-right: 0;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.8rem;
-        padding: 0 10px;
-    }
-    .header-container nav ul li { display: inline-block; }
-    .header-container nav ul li a {
-        font-size: 0.9rem;
-        padding: 6px 12px;
-        display: inline-block;
-        white-space: nowrap;
-    }
-    
-    /* Frase bíblica - centralizada e com padding lateral */
-    .frase-biblica {
-        text-align: center;
-        padding-right: 0;
-        margin-top: 15px;
-        padding-left: 10px;
-        padding-right: 10px;
-    }
+    .header-container nav ul { margin-right: 0; justify-content: center; flex-wrap: wrap; gap: 0.8rem; padding: 0 10px; }
+    .header-container nav ul li a { font-size: 0.9rem; padding: 6px 12px; white-space: nowrap; }
+    .frase-biblica { text-align: center; padding-right: 0; margin-top: 15px; padding-left: 10px; padding-right: 10px; }
     .frase-biblica p { font-size: 0.9rem; line-height: 1.4; }
-    
-    /* Banner - altura reduzida */
     .hero { padding: 0.5rem 0; }
     .hero-logo { height: 250px; object-fit: contain; }
-    
-    /* Divisórias - altura reduzida */
     .divisoria-topo { height: 50px; margin-bottom: -15px; }
     .divisoria { height: 50px; margin-top: -15px; }
-    
-    /* Seções - padding reduzido */
     section { padding: 2rem 0; }
     h2 { font-size: 1.5rem; margin-bottom: 1.5rem; }
     section p { font-size: 1rem; }
-    
-    /* Blocos de texto com padding reduzido */
-    .quem-somos .container > p,
-    .bloco-texto-projetos,
-    .bloco-texto-ajuda { padding: 1.2rem; }
+    .quem-somos .container > p, .bloco-texto-projetos, .bloco-texto-ajuda { padding: 1.2rem; }
     .bloco-texto-projetos p { font-size: 0.95rem; }
-    
-    /* Cards - gap e padding reduzidos */
     .projetos-grid, .ajuda-grid { gap: 1rem; }
     .projeto-card, .ajuda-item { padding: 1rem; }
     .projeto-card h3, .ajuda-item h3 { font-size: 1.1rem; }
-    
-    /* Carrossel de parceiros - tamanho reduzido */
     .parceiros-viewport { width: 120px; }
     .parceiros-slider { gap: 8px; }
     .seta { font-size: 2rem; }
     .parceiro-img { width: 80px; height: 80px; }
     .titulo-parceiros { margin-top: 2rem; }
-    
-    /* Contato - padding reduzido */
     .contato-info { padding: 1rem; }
     .contato-info p { font-size: 0.9rem; }
-    
-    /* Mapa - altura reduzida */
     .mapa-placeholder { height: 250px; }
-    
-    /* Rodapé - padding e fonte reduzidos */
     footer { padding: 1rem 0; }
     footer p { font-size: 0.8rem; }
-    
-    /* Menu flutuante (sticky) - centralizado e fonte menor */
     .sticky-nav nav { justify-content: center; }
-    .sticky-nav ul {
-        margin-right: 0;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 0.6rem;
-    }
-    .sticky-nav ul li a {
-        font-size: 0.85rem;
-        padding: 5px 10px;
-        white-space: nowrap;
-    }
-    
-    /* Aviso de cookies - ajuste para não ocupar muita tela */
+    .sticky-nav ul { margin-right: 0; justify-content: center; flex-wrap: wrap; gap: 0.6rem; }
+    .sticky-nav ul li a { font-size: 0.85rem; padding: 5px 10px; white-space: nowrap; }
     .cookie-notice { max-width: 90%; right: 5%; bottom: 10px; padding: 0.8rem; }
 }
 
-/* ========================================= */
-/* RESPONSIVO PARA TELAS MUITO PEQUENAS (max-width: 480px) */
-/* ========================================= */
+/* Telas muito pequenas (até 480px) */
 @media (max-width: 480px) {
-    /* Menu - links ainda menores */
     .header-container nav ul { gap: 0.4rem; }
     .header-container nav ul li a { font-size: 0.75rem; padding: 4px 8px; }
-    
-    /* Banner - altura ainda menor */
     .hero-logo { height: 180px; }
-    
-    /* Logo e título - tamanhos reduzidos */
     .logo-area { gap: 8px; }
     .logo { max-width: 40px; }
     .site-title { font-size: 1rem; }
     .igreja-nome { font-size: 1rem; }
     .igreja-local { font-size: 0.8rem; }
     .site-title small { font-size: 0.6rem; }
-    
-    /* Frase bíblica - fonte menor */
     .frase-biblica p { font-size: 0.75rem; }
-    
-    /* Menu flutuante - links mínimos */
     .sticky-nav ul li a { font-size: 0.7rem; padding: 4px 6px; }
 }
