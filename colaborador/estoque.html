@@ -29,31 +29,45 @@
             padding: 0 20px;
         }
 
-        .menu-topo {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .logo-area {
+        .logos-area {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .logo-area img {
-            max-width: 50px;
-            height: auto;
+        .logo-img {
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
+            object-fit: cover;
         }
 
-        .logo-texto {
-            font-size: 1rem;
+        .logo-title {
+            font-size: 1.2rem;
             font-weight: bold;
             color: #8E2B6D;
+            line-height: 1.2;
+            display: flex;
+            flex-direction: column;
         }
+        .linha1-bold { font-size: 1.2rem; font-weight: bold; display: block; }
+        .linha2-bold { font-size: 1.2rem; font-weight: bold; display: block; }
+        .linha3-small { font-size: 0.7rem; font-weight: normal; display: block; }
 
         .menu-links {
             display: flex;
@@ -66,6 +80,7 @@
             color: #8E2B6D;
             text-decoration: none;
             font-weight: 600;
+            font-size: 1rem;
             padding: 8px 15px;
             background: rgba(255,255,255,0.3);
             border-radius: 8px;
@@ -239,7 +254,6 @@
 
         .quantidade-zero { color: #999; }
 
-        /* RODAPÉ */
         footer {
             background-color: #d35400;
             color: white;
@@ -257,24 +271,6 @@
             opacity: 0.8;
         }
 
-        /* Linha da licença com política de privacidade à direita (mesma linha, licença centralizada) */
-        .footer-licenca {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 5px;
-            font-size: 0.7rem;
-            position: relative;
-        }
-
-        .footer-licenca a {
-            color: white;
-            text-decoration: underline;
-        }
-
-        /* Responsivo */
         @media (max-width: 900px) {
             .grid-estoque { grid-template-columns: 1fr; gap: 20px; }
             .card { padding: 1rem; }
@@ -282,16 +278,18 @@
             .item-linha { flex-direction: column; }
             .item-linha select, .item-linha input { width: 100%; }
             .titulo-colaborador { font-size: 1.2rem; padding: 15px 0; }
-            .menu-topo { flex-direction: column; text-align: center; }
+            .header-container { flex-direction: column; text-align: center; }
+            .logos-area { justify-content: center; }
             .menu-links { justify-content: center; }
         }
 
         @media (max-width: 480px) {
             .tabela-estoque th, .tabela-estoque td { padding: 8px; font-size: 0.8rem; }
             .btn-enviar { padding: 10px; font-size: 0.9rem; }
-            .footer-licenca {
+            footer div[style*="display: flex"] {
                 flex-direction: column;
-                gap: 5px;
+                gap: 10px;
+                text-align: center;
             }
         }
     </style>
@@ -300,14 +298,31 @@
 
 <div class="topo">
     <div class="container">
-        <div class="menu-topo">
-            <div class="logo-area">
-                <img src="../imagens/logoigreja.jpg" alt="Logo" onerror="this.src='https://via.placeholder.com/50'">
-                <div class="logo-texto">
-                    AD Canoas<br>
-                    <small>Matriz Niterói</small>
+        <div class="header-container">
+            <!-- DOIS LOGOS LADO A LADO -->
+            <div class="logos-area">
+                <!-- LOGO IGREJA -->
+                <div class="logo-item">
+                    <img src="../imagens/logoigreja.jpg" alt="Logo AD Canoas" class="logo-img">
+                    <div class="logo-title">
+                        <span class="linha1-bold">AD Canoas</span>
+                        <span class="linha2-bold">Matriz Niterói</span>
+                        <span class="linha3-small">Assembleia de Deus</span>
+                    </div>
+                </div>
+
+                <!-- LOGO PROJETO DORCAS -->
+                <div class="logo-item">
+                    <img src="../imagens/logo.png" alt="Logo Projeto Dorcas" class="logo-img">
+                    <div class="logo-title">
+                        <span class="linha1-bold">Projeto</span>
+                        <span class="linha2-bold">Dorcas</span>
+                        <span class="linha3-small">Ação Social</span>
+                    </div>
                 </div>
             </div>
+
+            <!-- MENU -->
             <div class="menu-links">
                 <a href="../index.html">🏠 Início</a>
                 <a href="#" onclick="logout()" class="btn-sair">🚪 Sair</a>
@@ -382,9 +397,6 @@
     </div>
 </div>
 
-<!-- ========================================= -->
-<!-- RODAPÉ: licença centralizada + política de privacidade à direita na mesma linha -->
-<!-- ========================================= -->
 <footer>
     <div class="container">
         <p>© 2026 AD Canoas - Matriz Niterói | Amor que transforma ✝️</p>
@@ -397,11 +409,13 @@
             e 
             <a href="https://www.linkedin.com/in/jean-waiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Linkedin</a>.
         </p>
-        <div class="footer-licenca">
-            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="license noopener noreferrer">
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 5px; font-size: 0.7rem;">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="license noopener noreferrer" style="color: white; text-decoration: underline;">
                 Licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)
             </a>
-            <a href="../privacidade.html" target="_blank">🔒 Política de Privacidade</a>
+            <a href="../privacidade.html" target="_blank" style="color: white; text-decoration: underline;">
+                🔒 Política de Privacidade
+            </a>
         </div>
     </div>
 </footer>

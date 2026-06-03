@@ -29,23 +29,69 @@
             padding: 0 20px;
         }
 
-        .menu {
+        .header-container {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        .menu a {
+        /* ÁREA DOS DOIS LOGOS LADO A LADO */
+        .logos-area {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        /* ESTRUTURA PADRÃO DE CADA LOGO */
+        .logo-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* ESTILO DAS IMAGENS (MESMO TAMANHO) */
+        .logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+        /* ESTRUTURA DO TEXTO DO LOGO (igual para ambos) */
+        .logo-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8E2B6D;
+            line-height: 1.2;
+            display: flex;
+            flex-direction: column;
+        }
+        .linha1-bold { font-size: 1.2rem; font-weight: bold; display: block; }
+        .linha2-bold { font-size: 1.2rem; font-weight: bold; display: block; }
+        .linha3-small { font-size: 0.7rem; font-weight: normal; display: block; }
+
+        .menu-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .menu-links a {
             color: #8E2B6D;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1rem;
             padding: 8px 15px;
             background: rgba(255,255,255,0.3);
             border-radius: 8px;
             transition: all 0.3s;
         }
 
-        .menu a:hover {
+        .menu-links a:hover {
             background: rgba(255,255,255,0.6);
             transform: translateY(-2px);
         }
@@ -76,7 +122,6 @@
             font-weight: 600;
         }
 
-        /* Campo email - estilo original */
         .form-group input[type="email"],
         .form-group input[type="text"],
         .form-group input[type="password"] {
@@ -92,7 +137,6 @@
             border-color: #d35400;
         }
 
-        /* Wrapper específico para o campo senha (mantém o mesmo visual) */
         .senha-wrapper {
             position: relative;
             width: 100%;
@@ -112,7 +156,6 @@
             border-color: #d35400;
         }
 
-        /* Botão do cadeado dentro do campo senha */
         .toggle-senha {
             position: absolute;
             right: 12px;
@@ -132,7 +175,6 @@
             opacity: 1;
         }
 
-        /* Remove o olhinho padrão do navegador */
         input[type="password"]::-ms-reveal,
         input[type="password"]::-webkit-credentials-auto-fill-button,
         input[type="password"]::-webkit-textfield-decoration-container,
@@ -185,7 +227,6 @@
             border: 1px solid #bee5eb;
         }
 
-        /* RODAPÉ */
         footer {
             background-color: #d35400;
             color: white;
@@ -203,8 +244,14 @@
             opacity: 0.8;
         }
 
-        /* Responsivo para celular */
         @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logos-area {
+                justify-content: center;
+            }
             .card-login {
                 margin: 40px 16px;
                 padding: 1.5rem;
@@ -212,7 +259,7 @@
             .card-login h2 {
                 font-size: 1.5rem;
             }
-            .menu a {
+            .menu-links a {
                 font-size: 0.9rem;
                 padding: 6px 12px;
             }
@@ -237,8 +284,34 @@
 
 <div class="topo">
     <div class="container">
-        <div class="menu">
-            <a href="../index.html">🏠 Início</a>
+        <div class="header-container">
+            <!-- DOIS LOGOS LADO A LADO COM MESMA ESTRUTURA -->
+            <div class="logos-area">
+                <!-- LOGO IGREJA -->
+                <div class="logo-item">
+                    <img src="../imagens/logoigreja.jpg" alt="Logo AD Canoas" class="logo-img">
+                    <div class="logo-title">
+                        <span class="linha1-bold">AD Canoas</span>
+                        <span class="linha2-bold">Matriz Niterói</span>
+                        <span class="linha3-small">Assembleia de Deus</span>
+                    </div>
+                </div>
+
+                <!-- LOGO PROJETO DORCAS (MESMA ESTRUTURA) -->
+                <div class="logo-item">
+                    <img src="../imagens/logo.png" alt="Logo Projeto Dorcas" class="logo-img">
+                    <div class="logo-title">
+                        <span class="linha1-bold">Projeto</span>
+                        <span class="linha2-bold">Dorcas</span>
+                        <span class="linha3-small">Ação Social</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MENU -->
+            <div class="menu-links">
+                <a href="../index.html">🏠 Início</a>
+            </div>
         </div>
     </div>
 </div>
@@ -249,13 +322,11 @@
         
         <div id="mensagem"></div>
         
-        <!-- Campo Email (estilo original) -->
         <div class="form-group">
             <label>📧 Email</label>
             <input type="email" id="email" placeholder="Seu email cadastrado" onkeypress="verificarEnter(event)">
         </div>
         
-        <!-- Campo Senha com cadeado dentro (estilo original preservado) -->
         <div class="form-group">
             <label>🔒 Senha</label>
             <div class="senha-wrapper">
@@ -290,9 +361,6 @@
     </div>
 </div>
 
-<!-- ========================================= -->
-<!-- RODAPÉ: licença centralizada + política de privacidade à direita na mesma linha -->
-<!-- ========================================= -->
 <footer>
     <div class="container">
         <p>© 2026 AD Canoas - Matriz Niterói | Amor que transforma ✝️</p>

@@ -4,9 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Política de Privacidade - AD Canoas</title>
-    <link rel="stylesheet" href="style.css">
     <style>
-        /* Estilos específicos para a página de privacidade */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle at top center, #fff4ef 0%, transparent 35%),
+                        linear-gradient(135deg, #f7cdd7 0%, #f9d8cf 25%, #f6d8e8 50%, #f8c9da 75%, #f7e2a6 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topo {
+            background: linear-gradient(135deg, #f5a623, #f8c471);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logos-area {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .logo-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .logo-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #8E2B6D;
+            line-height: 1.2;
+            display: flex;
+            flex-direction: column;
+        }
+        .linha1-bold { font-size: 1.2rem; font-weight: bold; display: block; }
+        .linha2-bold { font-size: 1.2rem; font-weight: bold; display: block; }
+        .linha3-small { font-size: 0.7rem; font-weight: normal; display: block; }
+
+        .menu-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .menu-links a {
+            color: #8E2B6D;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 8px 15px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .menu-links a:hover {
+            background: rgba(255,255,255,0.6);
+            transform: translateY(-2px);
+        }
+
         .privacidade-container {
             max-width: 900px;
             margin: 2rem auto;
@@ -16,24 +101,20 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             line-height: 1.6;
         }
+
         .privacidade-container h1 {
             color: #d35400;
             margin-bottom: 1.5rem;
             text-align: center;
         }
+
         .privacidade-container h2 {
             color: #d35400;
             font-size: 1.4rem;
             margin-top: 1.5rem;
             margin-bottom: 1rem;
         }
-        .privacidade-container p, .privacidade-container li {
-            color: #333;
-        }
-        .privacidade-container ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
+
         .btn-voltar {
             display: inline-block;
             background: linear-gradient(135deg, #f5a623, #f8c471);
@@ -44,96 +125,148 @@
             margin-top: 2rem;
             font-weight: bold;
         }
+
+        footer {
+            background-color: #d35400;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 3rem;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
         @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .logos-area {
+                justify-content: center;
+            }
             .privacidade-container {
                 margin: 1rem;
                 padding: 1rem;
+            }
+            .menu-links a {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+            footer div[style*="display: flex"] {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="container header-container">
-            <div class="logo-area">
-                <img src="imagens/logoigreja.jpg" alt="Logo AD Canoas" class="logo">
-                <div class="site-title">
-                    <span class="igreja-nome">AD Canoas</span>
-                    <span class="igreja-local">Matriz Niterói</span>
-                    <small>Assembleia de Deus</small>
+
+<div class="topo">
+    <div class="container">
+        <div class="header-container">
+            <!-- DOIS LOGOS LADO A LADO -->
+            <div class="logos-area">
+                <!-- LOGO IGREJA -->
+                <div class="logo-item">
+                    <img src="imagens/logoigreja.jpg" alt="Logo AD Canoas" class="logo-img">
+                    <div class="logo-title">
+                        <span class="linha1-bold">AD Canoas</span>
+                        <span class="linha2-bold">Matriz Niterói</span>
+                        <span class="linha3-small">Assembleia de Deus</span>
+                    </div>
+                </div>
+
+                <!-- LOGO PROJETO DORCAS -->
+                <div class="logo-item">
+                    <img src="imagens/logo.png" alt="Logo Projeto Dorcas" class="logo-img">
+                    <div class="logo-title">
+                        <span class="linha1-bold">Projeto</span>
+                        <span class="linha2-bold">Dorcas</span>
+                        <span class="linha3-small">Ação Social</span>
+                    </div>
                 </div>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                </ul>
-            </nav>
+
+            <!-- MENU -->
+            <div class="menu-links">
+                <a href="index.html">🏠 Início</a>
+            </div>
         </div>
-    </header>
-    <main>
-        <div class="container privacidade-container">
-            <h1>Política de Privacidade</h1>
-            <p>Na AD Canoas - Matriz Niterói, a sua privacidade é muito importante para nós. Esta Política de Privacidade descreve como coletamos, usamos e protegemos as informações que você nos fornece.</p>
+    </div>
+</div>
 
-            <h2>1. Informações que Coletamos</h2>
-            <p>Coletamos informações para fornecer e melhorar nossos serviços. As informações coletadas incluem:</p>
-            <ul>
-                <li><strong>Dados de Cadastro:</strong> Quando você solicita acesso como colaborador, coletamos seu nome, e-mail e senha. Esses dados são armazenados em planilhas seguras do Google (Google Sheets).</li>
-                <li><strong>Dados de Movimentação:</strong> Para os colaboradores autorizados, coletamos dados de movimentação de estoque (itens, quantidades, tipo de movimentação).</li>
-                <li><strong>Cookies:</strong> Utilizamos cookies para melhorar sua experiência. Você pode gerenciar suas preferências de cookies através do aviso em nosso site.</li>
-            </ul>
+<main>
+    <div class="container privacidade-container">
+        <h1>Política de Privacidade</h1>
+        <p>Na AD Canoas - Matriz Niterói, a sua privacidade é muito importante para nós. Esta Política de Privacidade descreve como coletamos, usamos e protegemos as informações que você nos fornece.</p>
 
-            <h2>2. Uso das Informações</h2>
-            <p>As informações coletadas são utilizadas para os seguintes fins:</p>
-            <ul>
-                <li>Gerenciar o acesso dos colaboradores à área restrita.</li>
-                <li>Controlar e gerenciar o estoque de itens da ação social.</li>
-                <li>Melhorar a funcionalidade e a experiência do usuário em nosso site.</li>
-                <li>Para entrarmos em contato quando necessário.</li>
-            </ul>
+        <h2>1. Informações que Coletamos</h2>
+        <p>Coletamos informações para fornecer e melhorar nossos serviços. As informações coletadas incluem:</p>
+        <ul>
+            <li><strong>Dados de Cadastro:</strong> Quando você solicita acesso como colaborador, coletamos seu nome, e-mail e senha. Esses dados são armazenados em planilhas seguras do Google (Google Sheets).</li>
+            <li><strong>Dados de Movimentação:</strong> Para os colaboradores autorizados, coletamos dados de movimentação de estoque (itens, quantidades, tipo de movimentação).</li>
+            <li><strong>Cookies:</strong> Utilizamos cookies para melhorar sua experiência. Você pode gerenciar suas preferências de cookies através do aviso em nosso site.</li>
+        </ul>
 
-            <h2>3. Compartilhamento de Informações</h2>
-            <p>Seus dados são armazenados em serviços Google (Google Sheets e Google Apps Script). Não compartilhamos suas informações pessoais com terceiros, exceto quando exigido por lei.</p>
+        <h2>2. Uso das Informações</h2>
+        <p>As informações coletadas são utilizadas para os seguintes fins:</p>
+        <ul>
+            <li>Gerenciar o acesso dos colaboradores à área restrita.</li>
+            <li>Controlar e gerenciar o estoque de itens da ação social.</li>
+            <li>Melhorar a funcionalidade e a experiência do usuário em nosso site.</li>
+        </ul>
 
-            <h2>4. Segurança dos Dados</h2>
-            <p>Adotamos medidas de segurança para proteger suas informações contra acesso não autorizado. O acesso à área de colaborador é protegido por senha, e os dados são armazenados em ambiente controlado do Google.</p>
+        <h2>3. Compartilhamento de Informações</h2>
+        <p>Seus dados são armazenados em serviços Google (Google Sheets e Google Apps Script). Não compartilhamos suas informações pessoais com terceiros, exceto quando exigido por lei.</p>
 
-            <h2>5. Seus Direitos (LGPD)</h2>
-            <p>Você tem o direito de solicitar acesso, correção ou exclusão de seus dados pessoais. Para isso, entre em contato através do e-mail: <strong>jeanwaiss@hotmail.com</strong> ou entre em contato com o novo detentor da página.</p>
+        <h2>4. Segurança dos Dados</h2>
+        <p>Adotamos medidas de segurança para proteger suas informações contra acesso não autorizado.</p>
 
-            <h2>6. Alterações nesta Política</h2>
-            <p>Esta Política de Privacidade pode ser atualizada periodicamente. Recomendamos que você a revise regularmente. A data da última atualização está no final deste documento.</p>
+        <h2>5. Seus Direitos (LGPD)</h2>
+        <p>Você tem o direito de solicitar acesso, correção ou exclusão de seus dados pessoais. Entre em contato pelo e-mail: <strong>jeanwaiss@hotmail.com</strong></p>
 
-            <h2>7. Contato</h2>
-            <p>Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato:</p>
-            <ul>
-                <li><strong>E-mail:</strong> jeanwaiss@hotmail.com</li>
-                <li>ou pelo perfil profissional do desenvolvedor original ou atual: <a href="https://www.linkedin.com/in/jean-waiss" target="_blank" rel="noopener noreferrer">www.linkedin.com/in/jean-waiss</a></li>
-            </ul>
-            <p><em>Última atualização: 28 de maio de 2026</em></p>
-            <a href="index.html" class="btn-voltar">← Voltar para o Início</a>
+        <h2>6. Contato</h2>
+        <p>Se você tiver dúvidas sobre esta Política de Privacidade, entre em contato:</p>
+        <ul>
+            <li><strong>E-mail:</strong> jeanwaiss@hotmail.com</li>
+            <li><strong>Linkedin:</strong> <a href="https://www.linkedin.com/in/jean-waiss" target="_blank">www.linkedin.com/in/jean-waiss</a></li>
+        </ul>
+        <p><em>Última atualização: 03 de junho de 2026</em></p>
+        <a href="index.html" class="btn-voltar">← Voltar para o Início</a>
+    </div>
+</main>
+
+<!-- RODAPÉ PADRONIZADO -->
+<footer>
+    <div class="container">
+        <p>© 2026 AD Canoas - Matriz Niterói | Amor que transforma ✝️</p>
+        <p style="font-size: 0.8rem; margin-top: 5px;">
+            Desenvolvido por Jean Waiss.
+        </p>
+        <p style="font-size: 0.7rem; margin-top: 5px;">
+            Confira no 
+            <a href="https://github.com/jeanwaiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">GitHub</a> 
+            e 
+            <a href="https://www.linkedin.com/in/jean-waiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Linkedin</a>.
+        </p>
+        <div style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 15px; margin-top: 5px; font-size: 0.7rem;">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="license noopener noreferrer" style="color: white; text-decoration: underline;">
+                Licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)
+            </a>
+            <a href="privacidade.html" target="_blank" style="color: white; text-decoration: underline;">
+                🔒 Política de Privacidade
+            </a>
         </div>
-    </main>
+    </div>
+</footer>
 
-    <!-- RODAPÉ IGUAL AO DA PÁGINA INICIAL -->
-    <footer>
-        <div class="container">
-            <p>© 2026 AD Canoas - Matriz Niterói | Amor que transforma ✝️</p>
-            <p style="font-size: 0.8rem; margin-top: 5px;">
-                Desenvolvido por Jean Waiss.
-            </p>
-            <p style="font-size: 0.7rem; margin-top: 5px;">
-                Confira no 
-                <a href="https://github.com/jeanwaiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">GitHub</a> 
-                e 
-                <a href="https://www.linkedin.com/in/jean-waiss" target="_blank" rel="noopener noreferrer" style="color: white; text-decoration: underline;">Linkedin</a>.
-            </p>
-            <p style="font-size: 0.7rem; margin-top: 5px; opacity: 0.8;">
-                <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.pt_BR" target="_blank" rel="license noopener noreferrer" style="color: white; text-decoration: underline;">
-                    Licença Creative Commons Atribuição-NãoComercial-CompartilhaIgual 4.0 Internacional (CC BY-NC-SA 4.0)
-                </a>
-            </p>
-        </div>
-    </footer>
 </body>
 </html>
