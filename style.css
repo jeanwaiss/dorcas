@@ -296,39 +296,6 @@ footer { background-color: #d35400; color: white; text-align: center; padding: 1
 .parceiro-img { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; flex-shrink: 0; display: block; }
 .parceiros-track a { display: block; line-height: 0; }
 
-/* RESPONSIVIDADE (CELULAR) */
-@media (max-width: 768px) {
-    .header-container { flex-direction: column; text-align: center; }
-    .logo-area { justify-content: center; flex-wrap: wrap; }
-    .logo-wrapper { margin-bottom: 10px; }
-    .header-container nav ul { margin-right: 0; justify-content: center; gap: 1rem; }
-    .frase-biblica { text-align: center; padding-right: 0; margin-top: 20px; }
-    .hero { padding: 1rem 0; }
-    .hero-logo { height: 300px; }
-    section { padding: 2rem 0; }
-    .sticky-nav nav { justify-content: center; }
-    .sticky-nav ul { margin-right: 0; justify-content: center; }
-    .divisoria-topo { height: 60px; margin-bottom: -20px; }
-    .divisoria { height: 60px; margin-top: -20px; }
-    .img-placeholder { height: 180px; }
-    .parceiros-viewport { width: 120px; }
-    .parceiros-slider { gap: 5px; }
-    .seta { font-size: 2rem; }
-    .titulo-parceiros { margin-top: 3rem; }
-    
-    /* Ajuste de padding nos textos em dispositivos móveis */
-    .quem-somos .container > p,
-    .bloco-texto-projetos,
-    .bloco-texto-ajuda {
-        padding: 1.5rem;
-    }
-    
-    .bloco-texto-projetos p {
-        font-size: 1rem;
-    }
-}
-/* ... (código anterior) ... */
-
 /* === AVISO DE COOKIES LGPD === */
 .cookie-notice {
     position: fixed;
@@ -385,4 +352,216 @@ footer { background-color: #d35400; color: white; text-align: center; padding: 1
 .cookie-accept-btn:hover {
     background: #e69500;
     transform: scale(1.02);
+}
+
+/* ========================================= */
+/* RESPONSIVO (TELAS PEQUENAS) - CORREÇÃO TOTAL DO CABEÇALHO */
+/* ========================================= */
+@media (max-width: 768px) {
+    /* CABEÇALHO - corrige a distorção */
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    /* ÁREA DA LOGO E TÍTULO */
+    .logo-area {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+    
+    .logo-wrapper {
+        margin-bottom: 8px;
+    }
+    
+    /* MENU DE NAVEGAÇÃO - quebra linha e centraliza */
+    .header-container nav ul {
+        margin-right: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    
+    .header-container nav ul li a {
+        font-size: 1rem;
+        padding: 6px 12px;
+        display: inline-block;
+    }
+    
+    /* FRASE BÍBLICA */
+    .frase-biblica {
+        text-align: center;
+        padding-right: 0;
+        margin-top: 15px;
+    }
+    
+    .frase-biblica p {
+        font-size: 1rem;
+    }
+    
+    /* BANNER */
+    .hero {
+        padding: 0.5rem 0;
+    }
+    .hero-logo {
+        height: 250px;
+        object-fit: contain;
+    }
+    
+    /* DIVISÓRIAS */
+    .divisoria-topo {
+        height: 50px;
+        margin-bottom: -15px;
+    }
+    .divisoria {
+        height: 50px;
+        margin-top: -15px;
+    }
+    
+    /* SEÇÕES */
+    section {
+        padding: 2rem 0;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    section p {
+        font-size: 1rem;
+    }
+    
+    /* PADDING BRANCO DOS TEXTOS */
+    .quem-somos .container > p,
+    .bloco-texto-projetos,
+    .bloco-texto-ajuda {
+        padding: 1.2rem;
+    }
+    
+    .bloco-texto-projetos p {
+        font-size: 0.95rem;
+    }
+    
+    /* CARDS */
+    .projetos-grid, .ajuda-grid {
+        gap: 1rem;
+    }
+    
+    .projeto-card, .ajuda-item {
+        padding: 1rem;
+    }
+    
+    .projeto-card h3, .ajuda-item h3 {
+        font-size: 1.1rem;
+    }
+    
+    /* CARROSSEL PARCEIROS */
+    .parceiros-viewport {
+        width: 120px;
+    }
+    .parceiros-slider {
+        gap: 8px;
+    }
+    .seta {
+        font-size: 2rem;
+    }
+    .parceiro-img {
+        width: 80px;
+        height: 80px;
+    }
+    .titulo-parceiros {
+        margin-top: 2rem;
+    }
+    
+    /* CONTATO */
+    .contato-info {
+        padding: 1rem;
+    }
+    .contato-info p {
+        font-size: 0.9rem;
+    }
+    
+    /* MAPA */
+    .mapa-placeholder {
+        height: 250px;
+    }
+    
+    /* RODAPÉ */
+    footer {
+        padding: 1rem 0;
+    }
+    footer p {
+        font-size: 0.8rem;
+    }
+    
+    /* MENU FLUTUANTE (STICKY) - CORREÇÃO */
+    .sticky-nav nav {
+        justify-content: center;
+    }
+    .sticky-nav ul {
+        margin-right: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+    .sticky-nav ul li a {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+    
+    /* AVISO DE COOKIES */
+    .cookie-notice {
+        max-width: 90%;
+        right: 5%;
+        bottom: 10px;
+        padding: 0.8rem;
+    }
+}
+
+/* Ajuste adicional para telas muito pequenas (até 480px) */
+@media (max-width: 480px) {
+    .header-container nav ul {
+        gap: 0.5rem;
+    }
+    .header-container nav ul li a {
+        font-size: 0.85rem;
+        padding: 4px 8px;
+    }
+    
+    .hero-logo {
+        height: 180px;
+    }
+    
+    .logo-area {
+        gap: 8px;
+    }
+    .logo {
+        max-width: 40px;
+    }
+    .site-title {
+        font-size: 1rem;
+    }
+    .igreja-nome {
+        font-size: 1rem;
+    }
+    .igreja-local {
+        font-size: 0.8rem;
+    }
+    .site-title small {
+        font-size: 0.6rem;
+    }
+    
+    .frase-biblica p {
+        font-size: 0.85rem;
+    }
+    
+    .divisoria-topo, .divisoria {
+        height: 40px;
+        margin-bottom: -10px;
+        margin-top: -10px;
+    }
 }
