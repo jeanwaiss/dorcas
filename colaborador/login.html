@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Login Colaborador - AD Canoas</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -74,17 +74,38 @@
             font-weight: 600;
         }
 
-        .form-group input {
-            width: 100%;
+        /* Container para senha com olhinho */
+        .senha-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .senha-container input {
+            flex: 1;
             padding: 12px;
             border: 1px solid #ddd;
             border-radius: 8px;
             font-size: 1rem;
         }
 
-        .form-group input:focus {
+        .senha-container input:focus {
             outline: none;
             border-color: #d35400;
+        }
+
+        .toggle-senha {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+
+        .toggle-senha:hover {
+            background: rgba(0,0,0,0.05);
         }
 
         .btn {
@@ -122,6 +143,27 @@
             color: #0c5460;
             border: 1px solid #bee5eb;
         }
+
+        /* Responsivo para celular */
+        @media (max-width: 768px) {
+            .card-login {
+                margin: 40px 16px;
+                padding: 1.5rem;
+            }
+            
+            .card-login h2 {
+                font-size: 1.5rem;
+            }
+            
+            .menu a {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+            
+            .toggle-senha {
+                font-size: 1.2rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -146,7 +188,10 @@
         </div>
         <div class="form-group">
             <label>🔒 Senha</label>
-            <input type="password" id="senha" placeholder="Sua senha" onkeypress="verificarEnter(event)">
+            <div class="senha-container">
+                <input type="password" id="senha" placeholder="Sua senha" onkeypress="verificarEnter(event)">
+                <button type="button" class="toggle-senha" onclick="toggleSenha()" id="olhoBtn">👁️</button>
+            </div>
         </div>
         <button class="btn" onclick="fazerLogin()">Entrar</button>
         
@@ -176,6 +221,19 @@
 
 <script>
 const API_URL = 'https://script.google.com/macros/s/AKfycbyj8auTTbZw93mcO5HCew90NW3C9T8XzgtozcETnxBeyyAvEo2BckScvObBUsIdPtdd/exec';
+
+function toggleSenha() {
+    const senhaInput = document.getElementById('senha');
+    const olhoBtn = document.getElementById('olhoBtn');
+    if (senhaInput.type === 'password') {
+        senhaInput.type = 'text';
+        olhoBtn.textContent = '🙈';
+    } else {
+        senhaInput.type = 'password';
+        olhoBtn.textContent = '👁️';
+    }
+}
+
 function verificarEnter(event) {
     if (event.key === 'Enter') {
         event.preventDefault();

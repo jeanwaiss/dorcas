@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Sistema de Estoque - AD Canoas</title>
     <style>
         * {
@@ -61,6 +61,7 @@
             display: flex;
             gap: 20px;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .menu-links a {
@@ -140,6 +141,7 @@
             gap: 10px;
             margin-bottom: 1rem;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .item-linha select {
@@ -186,6 +188,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .btn-remover {
@@ -215,8 +219,16 @@
             transform: translateY(-2px);
         }
 
+        /* Container para tabela com scroll horizontal */
+        .tabela-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin-top: 1rem;
+        }
+
         .tabela-estoque {
             width: 100%;
+            min-width: 300px;
             border-collapse: collapse;
         }
 
@@ -241,10 +253,59 @@
             color: #999;
         }
 
+        /* Responsivo para celular */
         @media (max-width: 900px) {
             .grid-estoque {
                 grid-template-columns: 1fr;
                 gap: 20px;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .card h3 {
+                font-size: 1.1rem;
+            }
+            
+            .item-linha {
+                flex-direction: column;
+            }
+            
+            .item-linha select,
+            .item-linha input {
+                width: 100%;
+            }
+            
+            .titulo-colaborador {
+                font-size: 1.2rem;
+                padding: 15px 0;
+            }
+            
+            .menu-topo {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .menu-links {
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tabela-estoque th,
+            .tabela-estoque td {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+            
+            .card h3 {
+                font-size: 1rem;
+            }
+            
+            .btn-enviar {
+                padding: 10px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -301,7 +362,7 @@
                     <option value="outro">📝 Outro (digite abaixo)</option>
                 </select>
                 <input type="number" id="quantidadeItem" placeholder="Qtde" step="0.1">
-                <select id="tipoMovimentacao" style="width: auto;">
+                <select id="tipoMovimentacao">
                     <option value="entrada">➕ Entrada</option>
                     <option value="saida">➖ Saída</option>
                 </select>
@@ -326,7 +387,7 @@
         <!-- COLUNA DIREITA: Estoque Atual -->
         <div class="card">
             <h3>📦 ITENS EM ESTOQUE</h3>
-            <div style="max-height: 500px; overflow-y: auto;">
+            <div class="tabela-container">
                 <table class="tabela-estoque" id="tabelaEstoque">
                     <thead>
                         <tr><th>Item</th><th>Quantidade</th></tr>
@@ -341,30 +402,20 @@
 </div>
 
 <script>
-// ⚠️ URL ÚNICA UNIFICADA ⚠️
-const API_URL = 'https://script.google.com/macros/s/AKfycbyj8auTTbZw93mcO5HCew90NW3C9T8XzgtozcETnxBeyyAvEo2BckScvObBUsIdPtdd/exec';let colaboradorNome = '';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyj8auTTbZw93mcO5HCew90NW3C9T8XzgtozcETnxBeyyAvEo2BckScvObBUsIdPtdd/exec';
+let colaboradorEmail = '';
+let colaboradorNome = '';
 let itensTemp = [];
 
-// Aguarda o carregamento da página
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('=== PÁGINA CARREGADA ===');
-    
-    // Tenta recuperar os dados do localStorage
     colaboradorEmail = localStorage.getItem('colaborador_email');
     colaboradorNome = localStorage.getItem('colaborador_nome');
     
-    console.log('Email do localStorage:', colaboradorEmail);
-    console.log('Nome do localStorage:', colaboradorNome);
-    
-    // Se não tem email no localStorage, redireciona para o login
     if (!colaboradorEmail) {
-        console.log('ERRO: Usuário não logado. Redirecionando para login...');
-        alert('Você precisa fazer login primeiro!');
         window.location.href = 'login.html';
         return;
     }
     
-    // Atualiza o título com o nome do colaborador
     const nomeSpan = document.getElementById('nomeColaborador');
     if (nomeSpan && colaboradorNome) {
         nomeSpan.innerText = colaboradorNome;
@@ -372,10 +423,9 @@ document.addEventListener('DOMContentLoaded', function() {
         nomeSpan.innerText = colaboradorEmail;
     }
     
-    // Data de hoje
-const hoje = new Date().toLocaleDateString('pt-BR').split('/').reverse().join('-');    document.getElementById('dataMovimentacao').value = hoje;
+    const hoje = new Date().toISOString().split('T')[0];
+    document.getElementById('dataMovimentacao').value = hoje;
     
-    // Carregar estoque
     carregarEstoque();
 });
 
@@ -395,28 +445,19 @@ function toggleOutroItem() {
 }
 
 function adicionarItemLista() {
-    console.log('=== ADICIONAR ITEM ===');
-    
     let item = document.getElementById('itemSelect').value;
     const quantidade = parseFloat(document.getElementById('quantidadeItem').value);
     const tipo = document.getElementById('tipoMovimentacao').value;
     const outroInput = document.getElementById('outroItemInput');
     
-    console.log('Item selecionado:', item);
-    console.log('Quantidade:', quantidade);
-    console.log('Tipo:', tipo);
-    
-    // Se escolheu "outro", pega o valor digitado
     if (item === 'outro') {
         if (!outroInput.value.trim()) {
             alert('Digite o nome do item!');
             return;
         }
         item = outroInput.value.trim();
-        console.log('Item digitado:', item);
     }
     
-    // Validações
     if (!item) {
         alert('Selecione ou digite um item!');
         return;
@@ -427,13 +468,9 @@ function adicionarItemLista() {
         return;
     }
     
-    // Adiciona à lista
     itensTemp.push({ item, quantidade, tipo });
-    console.log('Itens na lista agora:', itensTemp);
-    
     atualizarListaTemp();
     
-    // Limpar campos
     document.getElementById('quantidadeItem').value = '';
     document.getElementById('itemSelect').value = '';
     document.getElementById('outroItemDiv').style.display = 'none';
@@ -487,13 +524,9 @@ async function enviarMovimentacao() {
     
     const url = `${API_URL}?acao=movimentacao&dados=${encodeURIComponent(JSON.stringify(movimentacao))}`;
     
-    console.log('Enviando para URL:', url);
-    
     try {
         const resposta = await fetch(url);
         const dados = await resposta.json();
-        
-        console.log('Resposta:', dados);
         
         if (dados.sucesso) {
             alert('✅ Movimentação registrada com sucesso!');
@@ -504,22 +537,15 @@ async function enviarMovimentacao() {
             alert('Erro: ' + (dados.erro || dados.mensagem || 'Erro desconhecido'));
         }
     } catch (erro) {
-        console.error('ERRO:', erro);
         alert('Erro de conexão: ' + erro.message);
     }
 }
 
 async function carregarEstoque() {
-    console.log('Carregando estoque...');
-    
     try {
         const url = `${API_URL}?acao=estoque`;
-        console.log('URL estoque:', url);
-        
         const resposta = await fetch(url);
         const dados = await resposta.json();
-        
-        console.log('Resposta estoque:', dados);
         
         const tbody = document.getElementById('estoqueBody');
         
@@ -541,7 +567,6 @@ async function carregarEstoque() {
             tbody.innerHTML = '<tr><td colspan="2">Nenhum item em estoque</td></tr>';
         }
     } catch (erro) {
-        console.error('Erro ao carregar estoque:', erro);
         const tbody = document.getElementById('estoqueBody');
         tbody.innerHTML = '<tr><td colspan="2">Erro ao carregar: ' + erro.message + '</td></tr>';
     }
